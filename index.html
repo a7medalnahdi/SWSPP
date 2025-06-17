@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامج شركاء خدمة سويتر (SSP) - جاهز للإرسال</title>
+    <title>برنامج شركاء خدمة سويتر (SSP) - نسخة نهائية</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
-        /* تمت إضافة الخط المخصص LamaSans بناءً على طلبك السابق */
+        /* --- الخط المخصص --- */
         @font-face {
           font-family: 'SweaterFont';
-          src: url('LamaSans-Regular.woff2') format('woff2'),
-               url('LamaSans-Regular.woff') format('woff');
+          src: url('LamaSans-Regular.woff2') format('woff2'), url('LamaSans-Regular.woff') format('woff');
           font-weight: 400; /* normal */
           font-style: normal;
         }
@@ -23,7 +23,7 @@
         }
         @font-face {
           font-family: 'SweaterFont';
-          src: url('LamaSans-Bold.woff2') format('woff2'); /* الوزن العريض */
+          src: url('LamaSans-Bold.woff2') format('woff2');
           font-weight: 700; /* bold */
           font-style: normal;
         }
@@ -45,7 +45,7 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'SweaterFont', sans-serif;
-            font-weight: 400; /* تطبيق الوزن العادي كافتراضي */
+            font-weight: 400;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
@@ -71,7 +71,7 @@
             text-align: center; padding: 2rem;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/D0gBM8Q/7CR02916.jpg') no-repeat center center/cover;
         }
-        .hero-content { position: relative; z-index: 2; color: #fff; }
+        .hero-content { position: relative; z-index: 2; color: #fff; animation: popIn 1s ease-out 0.5s backwards; }
         .hero-title { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.3; }
         .hero-title .highlight { color: var(--accent-color); }
         .hero-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 700px; margin: 1.5rem auto 2.5rem; opacity: 0.9; font-weight: 400; }
@@ -156,6 +156,30 @@
         .page-footer a { color: var(--accent-color); text-decoration: none; }
         .footer-logo { display: block; margin-bottom: 1rem; }
         .footer-brochure-link { margin-bottom: 2rem; }
+
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        
+        /* --- Responsive Styles for Mobile --- */
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .section { padding: 4rem 0; }
+            .page-header { padding: 1rem; }
+
+            .section-title { font-size: 2.2rem; margin-bottom: 3rem; }
+            
+            .stat-item .stat-number { font-size: 2.5rem; }
+            .stat-item .stat-label { font-size: 1rem; }
+
+            .feature-card-title { font-size: 1.5rem; }
+            .accordion-header { font-size: 1.2rem; padding: 1.2rem; }
+
+            .form-container { padding: 2rem; }
+            .form-title { font-size: 2rem; }
+            .form-subtitle { font-size: 1rem; }
+        }
+
     </style>
 </head>
 <body>
@@ -167,39 +191,39 @@
     <main>
         <section class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title">استثمر في مستقبل العناية بالسيارات<br>كن شريك خدمة <span class="highlight">لسويتر</span></h1>
-                <p class="hero-subtitle">انضم إلى شبكة رائدة بأقل استثمار وحقق أقصى عائد. نمنحك الدعم الكامل للنجاح: تمويل، تسويق، وتدريب احترافي.</p>
-                <a href="#register" class="btn">ابدأ رحلتك الآن</a>
+                <h1 class="hero-title animate-on-scroll">استثمر في مستقبل العناية بالسيارات<br>كن شريك خدمة <span class="highlight">لسويتر</span></h1>
+                <p class="hero-subtitle animate-on-scroll" style="animation-delay: 0.2s;">انضم إلى شبكة رائدة بأقل استثمار وحقق أقصى عائد. نمنحك الدعم الكامل للنجاح: تمويل، تسويق، وتدريب احترافي.</p>
+                <a href="#register" class="btn animate-on-scroll" style="animation-delay: 0.4s;">ابدأ رحلتك الآن</a>
             </div>
         </section>
         
         <section class="section stats-section" id="stats">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-coins"></i></div><span class="stat-number">300,000</span><p class="stat-label">ريال استثمار مبدئي تقريبي</p></div>
-                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-users"></i></div><span class="stat-number">10</span><p class="stat-label">سائقين كحد أدنى للبدء</p></div>
-                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-headset"></i></div><span class="stat-number">24</span><p class="stat-label">ساعة دعم فني وتشغيلي</p></div>
+                    <div class="stat-item animate-on-scroll"><div class="stat-icon"><i class="fas fa-coins"></i></div><span class="stat-number" data-target="300000">0</span><p class="stat-label">ريال استثمار مبدئي تقريبي</p></div>
+                    <div class="stat-item animate-on-scroll" style="animation-delay: 0.2s;"><div class="stat-icon"><i class="fas fa-users"></i></div><span class="stat-number" data-target="10">0</span><p class="stat-label">سائقين كحد أدنى للبدء</p></div>
+                    <div class="stat-item animate-on-scroll" style="animation-delay: 0.4s;"><div class="stat-icon"><i class="fas fa-headset"></i></div><span class="stat-number" data-target="24">0</span><p class="stat-label">ساعة دعم فني وتشغيلي</p></div>
                 </div>
             </div>
         </section>
 
         <section class="section" id="features">
             <div class="container">
-                <h2 class="section-title">لماذا تستثمر مع <span class="highlight">سويتر</span>؟</h2>
+                <h2 class="section-title animate-on-scroll">لماذا تستثمر مع <span class="highlight">سويتر</span>؟</h2>
                 <div class="features-grid">
-                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-hand-holding-usd"></i></div><h3 class="feature-card-title">تمويل ميسّر</h3><p class="feature-card-description">نساعدك في الحصول على تمويل لمشروعك من بنك التنمية الاجتماعية لتبدأ بقوة.</p></div>
-                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-bullhorn"></i></div><h3 class="feature-card-title">تسويق احترافي</h3><p class="feature-card-description">استفد من قوة علامتنا التجارية وحملاتنا للوصول لآلاف العملاء دون عناء.</p></div>
-                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-cogs"></i></div><h3 class="feature-card-title">مساعدة تشغيلية</h3><p class="feature-card-description">فريق دعم فني متخصص لمساعدتك في حل أي تحديات تشغيلية تواجهك.</p></div>
-                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-chart-line"></i></div><h3 class="feature-card-title">تحليلات الأداء</h3><p class="feature-card-description">منصة تقنية متقدمة تمنحك رؤى دقيقة لتتبع أداء فريقك وتحسين الكفاءة.</p></div>
-                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3 class="feature-card-title">تدريب احترافي</h3><p class="feature-card-description">نؤهلك وفريقك بالكامل عبر برنامج تدريبي متكامل نظرياً وعملياً في الميدان.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-card-icon"><i class="fas fa-hand-holding-usd"></i></div><h3 class="feature-card-title">تمويل ميسّر</h3><p class="feature-card-description">نساعدك في الحصول على تمويل لمشروعك من بنك التنمية الاجتماعية لتبدأ بقوة.</p></div>
+                    <div class="feature-card animate-on-scroll" style="animation-delay: 0.1s;"><div class="feature-card-icon"><i class="fas fa-bullhorn"></i></div><h3 class="feature-card-title">تسويق احترافي</h3><p class="feature-card-description">استفد من قوة علامتنا التجارية وحملاتنا للوصول لآلاف العملاء دون عناء.</p></div>
+                    <div class="feature-card animate-on-scroll" style="animation-delay: 0.2s;"><div class="feature-card-icon"><i class="fas fa-cogs"></i></div><h3 class="feature-card-title">مساعدة تشغيلية</h3><p class="feature-card-description">فريق دعم فني متخصص لمساعدتك في حل أي تحديات تشغيلية تواجهك.</p></div>
+                    <div class="feature-card animate-on-scroll" style="animation-delay: 0.3s;"><div class="feature-card-icon"><i class="fas fa-chart-line"></i></div><h3 class="feature-card-title">تحليلات الأداء</h3><p class="feature-card-description">منصة تقنية متقدمة تمنحك رؤى دقيقة لتتبع أداء فريقك وتحسين الكفاءة.</p></div>
+                    <div class="feature-card animate-on-scroll" style="animation-delay: 0.4s;"><div class="feature-card-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3 class="feature-card-title">تدريب احترافي</h3><p class="feature-card-description">نؤهلك وفريقك بالكامل عبر برنامج تدريبي متكامل نظرياً وعملياً في الميدان.</p></div>
                 </div>
             </div>
         </section>
 
         <section class="section" id="requirements">
             <div class="container">
-                 <h2 class="section-title">خطوات بسيطة <span class="highlight">للانضمام</span></h2>
-                 <div class="accordion">
+                 <h2 class="section-title animate-on-scroll">خطوات بسيطة <span class="highlight">للانضمام</span></h2>
+                 <div class="accordion animate-on-scroll">
                     <div class="accordion-item"><button class="accordion-header"><span>1. السجل التجاري</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>يجب توفير سجل تجاري ساري، ويفضل أن يكون في فئة "تنظيف السيارات" لضمان التوافق الكامل مع متطلباتنا.</p></div></div>
                     <div class="accordion-item"><button class="accordion-header"><span>2. احصل على الدبابات</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>شراء 10 دراجات نارية على الأقل (نوصي بنوع TVS أو Bajaj بقوة 150cc) لتكوين أسطول الخدمة المبدئي.</p></div></div>
                     <div class="accordion-item"><button class="accordion-header"><span>3. احصل على البايكرية والمشرف</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>توفير 10 سائقين ("بايكرية") ومشرف مسؤول للتنسيق مع فريق عمليات سويتر وضمان جودة الخدمة المقدمة.</p></div></div>
@@ -210,7 +234,7 @@
         
         <section class="section form-section" id="register">
             <div class="container">
-                <div class="form-container">
+                <div class="form-container animate-on-scroll">
                      <h2 class="form-title">هل أنت مستعد للنجاح؟</h2>
                      <p class="form-subtitle">املأ النموذج أدناه لتبدأ رحلتك. فريقنا سيتواصل معك خلال 24-48 ساعة.</p>
                      <form id="partner-form" method="POST" action="https://formspree.io/f/YOUR_UNIQUE_ID">
@@ -241,6 +265,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // --- Header Scroll Effect ---
         const header = document.getElementById('page-header');
         if (header) {
             window.addEventListener('scroll', () => {
@@ -248,6 +273,7 @@
             });
         }
         
+        // --- Accordion Logic ---
         const accordionItems = document.querySelectorAll('.accordion-item');
         accordionItems.forEach(item => {
             const header = item.querySelector('.accordion-header');
@@ -255,7 +281,6 @@
                 const content = item.querySelector('.accordion-content');
                 const isActive = item.classList.contains('active');
                 
-                // Close all other items
                 accordionItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
@@ -263,7 +288,6 @@
                     }
                 });
 
-                // Toggle the clicked item
                 if (!isActive) {
                     item.classList.add('active');
                     content.style.maxHeight = content.scrollHeight + 'px';
@@ -273,6 +297,43 @@
                 }
             });
         });
+
+        // --- Intersection Observer for Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Animate counter if it's a stat number
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber) {
+                       animateCounter(statNumber);
+                    }
+                    // Unobserve after animating
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll, .stat-item').forEach(el => observer.observe(el));
+        
+        // --- Counter Animation Function ---
+        function animateCounter(element) {
+            const target = +element.dataset.target;
+            const duration = 1500;
+            const stepTime = 20;
+            const totalSteps = duration / stepTime;
+            const increment = target / totalSteps;
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.innerText = Math.ceil(current).toLocaleString('en-US');
+            }, stepTime);
+        }
     });
     </script>
 </body>
