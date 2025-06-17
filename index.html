@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج شركاء خدمة سويتر (SSP) - جاهز للإرسال</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* تمت إضافة الخط المخصص LamaSans بناءً على طلبك السابق */
+        @font-face {
+          font-family: 'SweaterFont';
+          src: url('LamaSans-Regular.woff2') format('woff2'),
+               url('LamaSans-Regular.woff') format('woff');
+          font-weight: 400; /* normal */
+          font-style: normal;
+        }
+        @font-face {
+          font-family: 'SweaterFont';
+          src: url('LamaSans-Medium.woff2') format('woff2');
+          font-weight: 500; /* medium */
+          font-style: normal;
+        }
+        @font-face {
+          font-family: 'SweaterFont';
+          src: url('LamaSans-Bold.woff2') format('woff2'); /* الوزن العريض */
+          font-weight: 700; /* bold */
+          font-style: normal;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --secondary-bg-color: #f8f9fa;
+            --card-bg-color: #ffffff;
+            --text-color: #212529;
+            --secondary-text-color: #6c757d;
+            --border-color: #e9ecef;
+            --accent-color: #f96714;
+            --light-color: #ffffff;
+            --accent-color-glow: rgba(249, 103, 20, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'SweaterFont', sans-serif;
+            font-weight: 400; /* تطبيق الوزن العادي كافتراضي */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1100px; margin: auto; padding: 0 2rem; }
+
+        .page-header {
+            position: fixed; top: 0; right: 0; width: 100%;
+            padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: background-color 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+        }
+        .page-header.scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px var(--shadow-color);
+        }
+        .logo { height: 45px; object-fit: contain; }
+
+        .hero-section {
+            position: relative; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/D0gBM8Q/7CR02916.jpg') no-repeat center center/cover;
+        }
+        .hero-content { position: relative; z-index: 2; color: #fff; }
+        .hero-title { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.3; }
+        .hero-title .highlight { color: var(--accent-color); }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 700px; margin: 1.5rem auto 2.5rem; opacity: 0.9; font-weight: 400; }
+        .btn {
+            background: var(--accent-color); color: var(--light-color); padding: 1rem 2.5rem;
+            font-size: 1.1rem; font-weight: 700; border-radius: 50px; cursor: pointer;
+            text-decoration: none; border: none; transition: all 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .btn-secondary {
+            background: transparent; border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-secondary:hover { background: var(--accent-color); color: var(--light-color); }
+        
+        .section { padding: 6rem 0; }
+        .section-title { font-size: 3rem; font-weight: 700; margin-bottom: 4rem; text-align: center; }
+        .section-title .highlight { color: var(--accent-color); }
+
+        .stats-section { background-color: var(--secondary-bg-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: auto; text-align: center; }
+        .stat-item .stat-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-color); opacity: 0.8; }
+        .stat-item .stat-number { font-size: 3.5rem; font-weight: 700; color: var(--accent-color); }
+        .stat-item .stat-label { font-size: 1.2rem; color: var(--secondary-text-color); margin-top: 0.5rem; }
+        
+        #features { background-color: var(--bg-color); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: auto; }
+        .feature-card {
+            background-color: var(--card-bg-color); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 2.5rem; text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 10px 30px var(--shadow-color); }
+        .feature-card-icon { color: var(--accent-color); margin-bottom: 1.5rem; font-size: 3rem; }
+        .feature-card-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+        .feature-card-description { color: var(--secondary-text-color); }
+
+        #requirements { background-color: var(--secondary-bg-color); }
+        .accordion { max-width: 800px; margin: auto; }
+        .accordion-item {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px; margin-bottom: 1rem;
+        }
+        .accordion-header {
+            width: 100%; text-align: right; background: none; border: none;
+            padding: 1.5rem; font-size: 1.5rem; font-family: inherit;
+            font-weight: 700; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            color: var(--text-color);
+        }
+        .accordion-header .accordion-icon { font-size: 1.2rem; transition: transform 0.3s ease; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .accordion-content p { padding: 0 1.5rem 1.5rem; margin: 0; color: var(--secondary-text-color); font-size: 1.1rem; }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-item.active .accordion-content { padding-bottom: 1.5rem; }
+
+        .form-section { background-color: var(--bg-color); }
+        .form-container {
+            max-width: 700px; margin: auto;
+            background-color: var(--accent-color);
+            border-radius: 24px; padding: 3rem;
+            box-shadow: 0 15px 40px var(--accent-color-glow);
+        }
+        .form-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--light-color); font-weight: 700;}
+        .form-subtitle { text-align: center; font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 2.5rem; }
+        
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        .form-group .input-icon {
+            position: absolute; top: 50%; right: 1rem;
+            transform: translateY(-50%); color: var(--secondary-text-color);
+            pointer-events: none;
+        }
+        .form-group input {
+            width: 100%; padding: 1rem; padding-right: 3rem; background-color: var(--light-color);
+            border: 1px solid var(--border-color); border-radius: 8px;
+            color: var(--text-color); font-family: inherit; font-size: 1rem;
+        }
+        .btn-submit { background-color: var(--light-color); color: var(--accent-color); width: 100%; font-weight: 700;}
+
+        .page-footer { padding: 4rem 2rem; text-align: center; color: var(--secondary-text-color); background-color: var(--secondary-bg-color); }
+        .page-footer a { color: var(--accent-color); text-decoration: none; }
+        .footer-logo { display: block; margin-bottom: 1rem; }
+        .footer-brochure-link { margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+
+    <header class="page-header" id="page-header">
+        <a href="#"><img src="https://i.ibb.co/nMVqvYBz/Logo-2.png" alt="Sweater Logo" class="logo"></a>
+    </header>
+    
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">استثمر في مستقبل العناية بالسيارات<br>كن شريك خدمة <span class="highlight">لسويتر</span></h1>
+                <p class="hero-subtitle">انضم إلى شبكة رائدة بأقل استثمار وحقق أقصى عائد. نمنحك الدعم الكامل للنجاح: تمويل، تسويق، وتدريب احترافي.</p>
+                <a href="#register" class="btn">ابدأ رحلتك الآن</a>
+            </div>
+        </section>
+        
+        <section class="section stats-section" id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-coins"></i></div><span class="stat-number">300,000</span><p class="stat-label">ريال استثمار مبدئي تقريبي</p></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-users"></i></div><span class="stat-number">10</span><p class="stat-label">سائقين كحد أدنى للبدء</p></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fas fa-headset"></i></div><span class="stat-number">24</span><p class="stat-label">ساعة دعم فني وتشغيلي</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="features">
+            <div class="container">
+                <h2 class="section-title">لماذا تستثمر مع <span class="highlight">سويتر</span>؟</h2>
+                <div class="features-grid">
+                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-hand-holding-usd"></i></div><h3 class="feature-card-title">تمويل ميسّر</h3><p class="feature-card-description">نساعدك في الحصول على تمويل لمشروعك من بنك التنمية الاجتماعية لتبدأ بقوة.</p></div>
+                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-bullhorn"></i></div><h3 class="feature-card-title">تسويق احترافي</h3><p class="feature-card-description">استفد من قوة علامتنا التجارية وحملاتنا للوصول لآلاف العملاء دون عناء.</p></div>
+                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-cogs"></i></div><h3 class="feature-card-title">مساعدة تشغيلية</h3><p class="feature-card-description">فريق دعم فني متخصص لمساعدتك في حل أي تحديات تشغيلية تواجهك.</p></div>
+                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-chart-line"></i></div><h3 class="feature-card-title">تحليلات الأداء</h3><p class="feature-card-description">منصة تقنية متقدمة تمنحك رؤى دقيقة لتتبع أداء فريقك وتحسين الكفاءة.</p></div>
+                    <div class="feature-card"><div class="feature-card-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3 class="feature-card-title">تدريب احترافي</h3><p class="feature-card-description">نؤهلك وفريقك بالكامل عبر برنامج تدريبي متكامل نظرياً وعملياً في الميدان.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="requirements">
+            <div class="container">
+                 <h2 class="section-title">خطوات بسيطة <span class="highlight">للانضمام</span></h2>
+                 <div class="accordion">
+                    <div class="accordion-item"><button class="accordion-header"><span>1. السجل التجاري</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>يجب توفير سجل تجاري ساري، ويفضل أن يكون في فئة "تنظيف السيارات" لضمان التوافق الكامل مع متطلباتنا.</p></div></div>
+                    <div class="accordion-item"><button class="accordion-header"><span>2. احصل على الدبابات</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>شراء 10 دراجات نارية على الأقل (نوصي بنوع TVS أو Bajaj بقوة 150cc) لتكوين أسطول الخدمة المبدئي.</p></div></div>
+                    <div class="accordion-item"><button class="accordion-header"><span>3. احصل على البايكرية والمشرف</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>توفير 10 سائقين ("بايكرية") ومشرف مسؤول للتنسيق مع فريق عمليات سويتر وضمان جودة الخدمة المقدمة.</p></div></div>
+                    <div class="accordion-item"><button class="accordion-header"><span>4. إطلاق!</span><i class="fas fa-chevron-down accordion-icon"></i></button><div class="accordion-content"><p>بعد استيفاء المتطلبات، سجّل معنا عبر النموذج أدناه، وسيكون فريقنا معك خطوة بخطوة للانطلاق في مشروعك.</p></div></div>
+                 </div>
+            </div>
+        </section>
+        
+        <section class="section form-section" id="register">
+            <div class="container">
+                <div class="form-container">
+                     <h2 class="form-title">هل أنت مستعد للنجاح؟</h2>
+                     <p class="form-subtitle">املأ النموذج أدناه لتبدأ رحلتك. فريقنا سيتواصل معك خلال 24-48 ساعة.</p>
+                     <form id="partner-form" method="POST" action="https://formspree.io/f/YOUR_UNIQUE_ID">
+                        <div class="form-group"><i class="fas fa-building input-icon"></i><input type="text" name="اسم الشركة" placeholder="اسم الشركة" required></div>
+                        <div class="form-group"><i class="fas fa-user input-icon"></i><input type="text" name="الاسم الكامل" placeholder="اسمك الكامل" required></div>
+                        <div class="form-group"><i class="fas fa-envelope input-icon"></i><input type="email" name="البريد الإلكتروني" placeholder="البريد الإلكتروني" required></div>
+                        <div class="form-group"><i class="fas fa-phone input-icon"></i><input type="tel" name="رقم الجوال" placeholder="رقم الجوال" required></div>
+                        <div class="form-group"><i class="fas fa-users input-icon"></i><input type="number" name="عدد السائقين" placeholder="عدد السائقين لديك" required></div>
+                        <div class="form-group"><i class="fas fa-map-marker-alt input-icon"></i><input type="text" name="المدينة" placeholder="المدينة التي ستعمل بها" required></div>
+                        
+                        <button type="submit" class="btn btn-submit">إرسال الطلب الآن</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <a href="#" class="footer-logo"><img src="https://i.ibb.co/nMVqvYBz/Logo-2.png" alt="Sweater Logo" class="logo"></a>
+            <div class="footer-brochure-link">
+                <a href="https://sweatersa.tiiny.site" class="btn btn-secondary">تحميل الكتيب التعريفي</a>
+            </div>
+            <p>للمزيد من المعلومات أو المتابعة، تواصل معنا عبر واتساب: <a href="https://wa.me/966920033881" target="_blank" style="direction: ltr; display: inline-block;">+966 9200 33 881</a></p>
+            <p>&copy; 2025 كل الحقوق محفوظة لشركة سويتر.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = document.getElementById('page-header');
+        if (header) {
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        }
+        
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const content = item.querySelector('.accordion-content');
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                    }
+                });
+
+                // Toggle the clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    item.classList.remove('active');
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
